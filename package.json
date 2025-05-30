@@ -1,0 +1,26 @@
+{
+  "name": "projeto4",
+  "version": "1.0.0",
+  "description": "[Aula 01 - Inicie o Projeto ](#aula-01---inicie-o-projeto)  \r [Aula 02 - ]()  \r [Aula 03 - ]()  \r [Aula 04 - ]()  \r [Aula 05 - ]()  \r [Aula 06 - ]()  \r [Aula 07 - ]()  \r [Aula 08 - ]()  \r [Aula 09 - ]()  \r [Aula 10 - ]()  \r [Aula 11 - ]()",
+  "homepage": "https://github.com/o-matheus/front_21_ebac#readme",
+  "bugs": {
+    "url": "https://github.com/o-matheus/front_21_ebac/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/o-matheus/front_21_ebac.git"
+  },
+  "license": "ISC",
+  "author": "Matheus",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.89.0"
+  }
+}
