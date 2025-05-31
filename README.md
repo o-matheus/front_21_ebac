@@ -2,7 +2,7 @@
 
 ## Menu 
 [Aula 01 - Inicie o Projeto ](#aula-1--inicie-o-projeto)  
-[Aula 02 - ]()  
+[Aula 02 - Crie o Hero ](#aula-2--crie-o-hero)  
 [Aula 03 - ]()  
 [Aula 04 - ]()  
 [Aula 05 - ]()  
@@ -163,3 +163,178 @@ Adicionei um `<h1>` de teste e verifiquei no navegador com o Live Server — tud
 * Configuramos o `.gitignore` para ignorar a pasta `dist`;
 * Criamos o `index.html` e testamos a integração com o CSS;
 * Realizamos o controle de versão com Git usando comandos ou interface gráfica.
+
+Ótimo! Finalizei a revisão completa das suas anotações até aqui. Abaixo está o **texto final da Aula 2 – Crie o Hero**, seguindo exatamente o modelo da Aula 1:
+
+---
+
+## **Aula 2 – Crie o Hero**
+
+### **Objetivos da aula**
+
+* Compreender a estrutura de um componente HTML;
+* Dominar o uso de classes e estilos CSS;
+* Praticar a criação de seletores CSS avançados.
+
+---
+
+### **Análise inicial e estruturação do Hero**
+
+Iniciamos a aula analisando o site original da Disney+ utilizando o **painel de desenvolvedor do navegador**, observando margens, espaçamentos e outros padrões visuais. A ideia era identificar elementos reutilizáveis e montar um componente Hero com base nessas referências.
+
+O professor reforçou a importância do uso de **Sass com metodologia BEM**, separando a estilização em arquivos específicos e reaproveitando estilos com variáveis e mixins.
+
+---
+
+### **Estilização modular com Sass**
+
+Criamos o arquivo `/_hero.scss` e o importamos no `main.scss` com:
+
+```scss
+@use 'hero';
+```
+
+Também criamos o arquivo `/_variaveis.scss`, para isolar as variáveis de cor e layout. Para utilizá-las nos outros arquivos Sass, é necessário importar `variaveis` com `@use 'variaveis';` em cada arquivo.
+
+**Variáveis principais:**
+
+```scss
+$corDeFundo: #040714;
+$corTextoPrincipal: silver;
+$corTextoSecundario: #f9f9f9;
+$corBotaoPrimario: #6421FF;
+```
+
+---
+
+### **Mixins personalizados**
+
+Com base na análise do site original, o professor percebeu que o `line-height` era sempre **10px maior que a `font-size`**. Para facilitar esse padrão, criamos mixins reutilizáveis:
+
+```scss
+@mixin text($font-size: 16px) {
+  font-size: $font-size;
+  line-height: calc($font-size + 10px);
+}
+
+@mixin title($font-size: 40px) {
+  font-size: $font-size;
+  line-height: calc($font-size + 10px);
+  color: $corTextoSecundario;
+}
+```
+
+---
+
+### **Estrutura HTML da seção Hero**
+
+No `index.html`, criamos a estrutura da seção Hero:
+
+```html
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__content-branding">
+      <img src="images/disneyplus.svg" alt="Disney+">
+    </h1>
+    <h3 class="title title--small">As melhores histórias em um só lugar</h3>
+    <p class="link-text">
+      <a href="#">Assinar o Disney+</a>
+      <span class="text">R$ 27,90/mês ou R$ 279,90/ano</span>
+    </p>
+    <ul class="hero__content-combos">
+      <li class="hero__content-combo">
+        <!-- Combo 1 -->
+      </li>
+      <li class="hero__content-combo">
+        <!-- Combo 2 -->
+      </li>
+    </ul>
+    <p class="text text--small">
+      *O preço pode variar caso a assinatura seja feita através de outras plataformas.
+    </p>
+  </div>
+</section>
+```
+
+---
+
+### **Estilização dos combos**
+
+O professor explicou que a lista de combos usa a tag `<ul>` com a classe `.hero__content-combos`, e cada item (`<li>`) representa um plano:
+
+```scss
+.hero__content-combos {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hero__content-combo {
+  width: calc(50% - 12px);
+  text-align: center;
+
+  img {
+    max-height: 60px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 20px;
+    background-color: $corBotaoPrimario;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-top: 2vw;
+  }
+}
+```
+
+O botão de chamada para ação recebeu cor, raio de borda, texto em caixa alta e largura total.
+
+---
+
+### **Importante: comportamento de margin no CSS**
+
+**Resumo da propriedade `margin`:**
+
+* 1 valor → todos os lados;
+* 2 valores → topo/base, esquerda/direita;
+* 3 valores → topo, lados, base.
+
+---
+
+### **Sobre pseudo-seletores e organização**
+
+Ao aplicar estilos no último parágrafo (`p`) com a observação do preço, utilizamos o pseudo-seletor `:last-child`, mas como estamos em Sass, foi necessário escrever corretamente com `&`:
+
+```scss
+.hero__content p:last-child {
+  margin-top: 20px;
+
+  img {
+    width: 60px;
+  }
+}
+```
+
+---
+
+### **Correções e problemas encontrados**
+
+* Algumas **imagens não foram minificadas corretamente** com `gulp-imagemin`, então usamos diretamente os arquivos originais;
+* A imagem de fundo do Hero estava cortada. A correção foi feita com:
+
+```scss
+background-size: cover;
+```
+
+---
+
+### **Resumo da Aula 2**
+
+* Estruturamos a seção Hero do site Disney+ com imagem, título, preços e combos;
+* Usamos Sass modular com variáveis e mixins reutilizáveis;
+* Organizamos o CSS com metodologia BEM;
+* Estilizamos botões e listas de combos com `flex`, `calc` e espaçamentos proporcionais;
+* Aprendemos boas práticas com pseudo-seletores e a importância do `background-size`;
+* Criamos o script `npm run dev` no `package.json` para agilizar o desenvolvimento;
+* Resolvemos pequenos bugs e alinhamos a estrutura visual ao site original.
