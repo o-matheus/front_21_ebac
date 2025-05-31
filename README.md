@@ -3,7 +3,7 @@
 ## Menu 
 [Aula 01 - Inicie o Projeto ](#aula-1--inicie-o-projeto)  
 [Aula 02 - Crie o Hero ](#aula-2--crie-o-hero)  
-[Aula 03 - ]()  
+[Aula 03 - Importe uma fonte externa  ](#aula-3--importe-uma-fonte-externa)  
 [Aula 04 - ]()  
 [Aula 05 - ]()  
 [Aula 06 - ]()  
@@ -338,3 +338,77 @@ background-size: cover;
 * Aprendemos boas práticas com pseudo-seletores e a importância do `background-size`;
 * Criamos o script `npm run dev` no `package.json` para agilizar o desenvolvimento;
 * Resolvemos pequenos bugs e alinhamos a estrutura visual ao site original.
+
+Perfeito! Aqui está a **anotação revisada da Aula 3**, com foco em ortografia e fluidez, conforme você orientou:
+
+---
+
+## **Aula 3 – Importe uma fonte externa**
+
+### **Objetivos da aula**
+
+* Compreender como importar fontes externas em um projeto web;
+* Praticar o uso de controle de versão com o Git.
+
+---
+
+### **Por que importar fontes neste projeto?**
+
+Neste projeto, as fontes utilizadas **não estão disponíveis no Google Fonts**. Por isso, precisamos importar manualmente os arquivos `.woff` ou `.ttf`, utilizando a funcionalidade do `@font-face` no Sass.
+
+---
+
+### **Importação com Sass**
+
+Fizemos o processo de importação no arquivo principal de estilos (`main.scss` ou `variaveis.scss`). A fonte utilizada foi a **Avenue**.
+
+#### Fonte regular (peso normal):
+
+```scss
+@font-face {
+  font-family: 'Avenue';
+  src: url('../../assets/fonts/avenue-regular.woff') format('woff');
+  font-weight: 400;
+}
+```
+
+#### Fonte bold:
+
+```scss
+@font-face {
+  font-family: 'Avenue';
+  src: url('../../assets/fonts/avenue-bold.woff') format('woff');
+  font-weight: 700;
+}
+```
+
+Com os `@font-face` definidos, podemos utilizar a fonte normalmente no restante do projeto:
+
+```scss
+body {
+  font-family: 'Avenue', sans-serif;
+}
+```
+
+---
+
+### **Uso com fallback**
+
+Para garantir que o texto continue legível mesmo que a fonte personalizada não carregue, aplicamos um **fallback**, como `sans-serif`:
+
+```scss
+font-family: 'Avenue', sans-serif;
+```
+
+---
+
+### **Controle de versão com Git**
+
+Ao final da aula, o professor reforça o uso do **Git** para controle de versão, como já feito em aulas anteriores:
+
+1. `git status` – verificar alterações;
+2. `git add .` – adicionar arquivos;
+3. `git commit -m "feat: adiciona fonte externa Avenue"` – criar um commit;
+4. `git push` – enviar ao repositório remoto.
+
+Ele também explicou que o Git mostra, no terminal, **comparações entre o repositório local e o remoto**, informando se os arquivos estão atualizados, pendentes ou em conflito.
