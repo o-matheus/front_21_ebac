@@ -4,7 +4,7 @@
 [Aula 01 - Inicie o Projeto ](#aula-1--inicie-o-projeto)  
 [Aula 02 - Crie o Hero ](#aula-2--crie-o-hero)  
 [Aula 03 - Importe uma fonte externa  ](#aula-3--importe-uma-fonte-externa)  
-[Aula 04 - ]()  
+[Aula 04 - Crie a sessão de atrações ](#aula-4--crie-a-sessão-de-atrações)  
 [Aula 05 - ]()  
 [Aula 06 - ]()  
 [Aula 07 - ]()  
@@ -164,9 +164,6 @@ Adicionei um `<h1>` de teste e verifiquei no navegador com o Live Server — tud
 * Criamos o `index.html` e testamos a integração com o CSS;
 * Realizamos o controle de versão com Git usando comandos ou interface gráfica.
 
-Ótimo! Finalizei a revisão completa das suas anotações até aqui. Abaixo está o **texto final da Aula 2 – Crie o Hero**, seguindo exatamente o modelo da Aula 1:
-
----
 
 ## **Aula 2 – Crie o Hero**
 
@@ -412,3 +409,117 @@ Ao final da aula, o professor reforça o uso do **Git** para controle de versão
 4. `git push` – enviar ao repositório remoto.
 
 Ele também explicou que o Git mostra, no terminal, **comparações entre o repositório local e o remoto**, informando se os arquivos estão atualizados, pendentes ou em conflito.
+
+Claro! Aqui está o texto unificado da **Aula 4 – Crie a sessão de atrações**, seguindo o modelo estruturado da **Aula 1 - Configuração Grunt**:
+
+---
+
+## Aula 4 – Crie a sessão de atrações
+
+### Objetivos da aula
+
+* Criar a seção de **atrações** com base no layout original da Disney+;
+* Implementar uma **navegação por abas** usando JavaScript puro;
+* Aplicar manipulação de classes e atributos personalizados para controlar o conteúdo visível.
+
+---
+
+### Etapas da construção
+
+#### 1. Criar a estrutura HTML
+
+Foi criada uma nova seção `<section class="shows">`, que representa os shows e atrações. Dentro dela, adicionamos:
+
+* Um `<nav class="shows__tabs">` com **três botões**;
+* Três listas `<ul>` com a classe `shows__list`, contendo os itens de cada categoria.
+
+Cada botão possui o atributo personalizado `data-tab-button`, enquanto cada lista usa `data-tab-id` para permitir a **ligação entre botões e conteúdo**:
+
+```html
+<button data-tab-button="em_breve" class="shows__tabs__button shows__tabs__button--active">Em breve</button>
+<ul data-tab-id="em_breve" class="shows__list shows__list--active">...</ul>
+```
+
+**A ideia é que ao clicar em um botão, a lista correspondente seja exibida, e as demais, ocultadas.**
+
+---
+
+#### 2. Implementar a lógica com JavaScript
+
+Toda a lógica de interação foi implementada com JavaScript puro, começando com um `addEventListener` escutando o carregamento do DOM:
+
+```js
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('[data-tab-button]');
+    ...
+});
+```
+
+Esse trecho garante que o código só será executado após o carregamento completo do HTML.
+
+#### 3. Associar os botões às listas
+
+Dentro do loop `for`, associamos cada botão à lista correspondente por meio do `dataset`:
+
+```js
+buttons[i].addEventListener('click', function(botao) {
+    const abaAlvo = botao.target.dataset.tabButton;
+    const aba = document.querySelector(`[data-tab-id="${abaAlvo}"]`);
+    ...
+});
+```
+
+A lógica completa realiza quatro ações:
+
+1. **Esconder todas as abas** com `escondeTodasAbas()`;
+2. **Mostrar a aba selecionada** com `classList.add('shows__list--active')`;
+3. **Remover destaque dos outros botões** com `removeBotaoAtivo()`;
+4. **Adicionar destaque ao botão atual** com `classList.add('shows__tabs__button--active')`.
+
+---
+
+### Funções auxiliares
+
+As funções `escondeTodasAbas` e `removeBotaoAtivo` são responsáveis por limpar os estilos anteriores antes de aplicar os novos:
+
+```js
+function escondeTodasAbas() {
+    const tabsContainer = document.querySelectorAll('[data-tab-id]');
+    for (let i = 0; i < tabsContainer.length; i++) {
+        tabsContainer[i].classList.remove('shows__list--active');
+    }
+}
+
+function removeBotaoAtivo() {
+    const buttons = document.querySelectorAll('[data-tab-button]');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('shows__tabs__button--active');
+    }
+}
+```
+
+Essas funções garantem que apenas uma aba e um botão fiquem ativos por vez.
+
+---
+
+### Estilização extra
+
+Para reforçar visualmente a aba ativa, foi adicionada uma **borda inferior nos botões**. Essa borda:
+
+* Fica **transparente** quando a aba não está selecionada;
+* Torna-se **colorida** quando o botão recebe a classe `shows__tabs__button--active`.
+
+Esse pequeno detalhe melhora a experiência do usuário ao indicar claramente qual aba está aberta.
+
+---
+
+### Comentário final
+
+Durante os testes, foi observado que a interpolação de atributos com crase (\`\`) funcionou mesmo **sem aspas ao redor do seletor**, como:
+
+```js
+document.querySelector([data-tab-id=${abaAlvo}]);
+```
+
+Apesar disso, é recomendado utilizar aspas para manter a clareza e evitar possíveis problemas de interpretação por parte do navegador.
+
