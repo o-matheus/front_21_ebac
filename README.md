@@ -5,7 +5,7 @@
 [Aula 02 - Crie o Hero ](#aula-2--crie-o-hero)  
 [Aula 03 - Importe uma fonte externa  ](#aula-3--importe-uma-fonte-externa)  
 [Aula 04 - Crie a sessão de atrações ](#aula-4--crie-a-sessão-de-atrações)  
-[Aula 05 - ]()  
+[Aula 05 - Criar listagem de planos](#aula-5--criar-listagem-de-planos)  
 [Aula 06 - ]()  
 [Aula 07 - ]()  
 [Aula 08 - ]()  
@@ -523,3 +523,109 @@ document.querySelector([data-tab-id=${abaAlvo}]);
 
 Apesar disso, é recomendado utilizar aspas para manter a clareza e evitar possíveis problemas de interpretação por parte do navegador.
 
+Perfeito! Aqui está o **texto unificado da Aula 5 – Criar Listagem de Planos**, seguindo exatamente o padrão que você indicou anteriormente:
+
+---
+
+## **Aula 5 – Criar Listagem de Planos**
+
+### **Objetivos da aula**
+
+* Criar uma seção de listagem de planos em um site;
+* Estilizar elementos de acordo com as diretrizes de design;
+* Utilizar seletores CSS e classes para organização visual.
+
+---
+
+### **Criação da nova seção**
+
+A estrutura da aula começou com a criação de uma nova `section` com a classe `plans`, responsável por exibir os planos de assinatura. Essa seção possui um **título centralizado**, com a frase:
+
+```html
+<h2 class="title">Escolha o seu plano</h2>
+```
+
+Logo abaixo, foi criado um elemento `<ul class="plans__list">`, que representa a lista de planos disponíveis.
+
+Cada item da lista (`<li class="plans__list__item">`) possui a seguinte estrutura:
+
+* Uma imagem (`<img>`) com o logo dos serviços;
+* Um preço dentro de uma tag `<strong class="title--small">`;
+* Uma breve descrição em um `<p>`;
+* Um botão com a chamada para ação.
+
+Essa estrutura foi repetida três vezes, representando três opções de planos: Disney+, Disney+ + Star+, e Disney+ + Star+ + Starzplay. O plano do meio possui um **destaque especial**, com o selo de "Mais popular" em formato de imagem.
+
+---
+
+### **Estilização da seção**
+
+Para organizar os estilos, foi criado um novo arquivo SASS:
+
+```
+/src/styles/plans.scss
+```
+
+Esse arquivo foi importado no `main.scss` com a linha:
+
+```scss
+@use 'plans';
+```
+
+#### Estilos principais aplicados
+
+* `.plans` recebeu `padding: 5.6vw`;
+* O `h2` foi centralizado com `text-align: center`;
+* `.plans__list` recebeu `display: flex` e `justify-content: space-around` para distribuir igualmente os itens;
+* Cada `.plans__list__item` recebeu:
+
+  * `text-align: center` para alinhar os conteúdos;
+  * `padding` interno;
+  * `max-width: 380px` e `width: 100%` para limitar a largura;
+  * `img { height: 83px; }` para manter as proporções da logo;
+  * `strong { display: block; }` para separar o preço dos demais conteúdos.
+
+Além disso, foi utilizado o seletor `strong + button` com `margin-top: 24px` para criar um espaçamento mais agradável entre o valor e o botão.
+
+---
+
+### **Botão reutilizável**
+
+Inicialmente, o botão tinha estilos definidos apenas dentro do bloco `hero`, mas ao perceber que ele seria reutilizado em outras partes do projeto, foi criada uma **classe genérica** chamada `.button`.
+
+O estilo foi movido para o `main.scss`, e a classe `.button` foi aplicada em todos os botões do projeto para manter a consistência visual.
+
+---
+
+### **Destaque do plano central**
+
+Para aplicar o fundo personalizado no segundo item da lista (o plano mais popular), foi utilizado o seletor CSS:
+
+```scss
+.plans__list__item:nth-child(2) {
+  background-image: url('../../images/fundo-combo-plus.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+```
+
+Com isso, o segundo plano ganhou o selo de "Mais popular", com um fundo roxo que simula o destaque da plataforma oficial.
+
+---
+
+### **Ajustes finais e espaçamentos**
+
+* Foi adicionado `margin-top: 50px` em `.plans__list` para afastar os planos do título;
+* Em `.shows`, foi aplicado `min-height: 50vw` para garantir espaçamento entre as seções;
+* A estrutura textual também foi revisada para simular a disposição original do site da Disney+, com quebras de linha que ajudam na leitura.
+
+---
+
+### **Resumo da Aula 5**
+
+* Criamos a seção de listagem dos planos com título e três opções de assinatura;
+* Organizamos os itens com `flexbox` e definimos limites de largura;
+* Centralizamos textos e imagens, e aplicamos destaque no plano central com `nth-child`;
+* Padronizamos o estilo dos botões usando a classe `.button`;
+* Corrigimos espaçamentos verticais entre as seções e os elementos internos;
+* Finalizamos com uma seção visualmente próxima da versão real do site da Disney+.
