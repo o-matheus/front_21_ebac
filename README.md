@@ -6,7 +6,7 @@
 [Aula 03 - Importe uma fonte externa  ](#aula-3--importe-uma-fonte-externa)  
 [Aula 04 - Crie a sessão de atrações ](#aula-4--crie-a-sessão-de-atrações)  
 [Aula 05 - Criar listagem de planos](#aula-5--criar-listagem-de-planos)  
-[Aula 06 - ]()  
+[Aula 06 - Crie a seção "Assista do seu jeito" ](#aula-6--crie-a-seção-assista-do-seu-jeito)  
 [Aula 07 - ]()  
 [Aula 08 - ]()  
 [Aula 09 - ]()  
