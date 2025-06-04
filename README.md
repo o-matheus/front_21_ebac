@@ -629,3 +629,90 @@ Com isso, o segundo plano ganhou o selo de "Mais popular", com um fundo roxo que
 * Padronizamos o estilo dos botões usando a classe `.button`;
 * Corrigimos espaçamentos verticais entre as seções e os elementos internos;
 * Finalizamos com uma seção visualmente próxima da versão real do site da Disney+.
+
+Perfeito! Aqui está o **texto unificado da Aula 6 – Crie a seção "Assista do seu jeito"**, seguindo o mesmo padrão das aulas anteriores:
+
+---
+
+## **Aula 6 – Crie a seção "Assista do seu jeito"**
+
+### **Objetivos da aula**
+
+* Criar uma seção de conteúdo com imagem e texto;
+* Aplicar estilo CSS para formatar a seção de forma responsiva e organizada.
+
+---
+
+### **Criação da estrutura**
+
+Nesta aula, criamos uma nova `section` com a classe `watch-anywhere`, responsável por apresentar a flexibilidade de acesso ao conteúdo da Disney+ em diversos dispositivos.
+
+A estrutura interna da `section` foi composta por dois elementos principais:
+
+1. **Imagem ilustrativa**: mostra uma composição de vários dispositivos (TV, computador, tablet, celular), todos exibindo a interface da Disney+;
+2. **Texto promocional**: posicionado ao lado da imagem, com um título de destaque e uma descrição explicativa sobre a versatilidade do serviço.
+
+O conteúdo textual inclui:
+
+* Um título com a frase: `Assista do seu jeito`;
+* Um parágrafo descrevendo a possibilidade de assistir à Disney+ em diversos aparelhos;
+* Uma ênfase na qualidade e diversidade de conteúdos disponíveis.
+
+---
+
+### **Estilização com SASS**
+
+Para estilizar essa nova seção, foi criado um novo arquivo SASS:
+
+```
+/src/styles/watch-anywhere.scss
+```
+
+Esse arquivo foi importado no `main.scss` da seguinte forma:
+
+```scss
+@use 'watch-anywhere';
+```
+
+#### Estilos aplicados
+
+* `.watch-anywhere` recebeu `padding: 5.6vw` para manter a consistência com as outras seções;
+* Foi aplicado `display: grid` com `grid-template-columns: 1fr 1fr`, dividindo a seção em duas colunas de tamanho igual;
+* `align-items: center` centralizou verticalmente os elementos;
+* A imagem foi limitada com `max-width: 100%` para evitar que ultrapasse os limites da coluna e manter a estética do layout.
+
+#### Container de texto
+
+Seguindo a metodologia BEM, o bloco de texto foi encapsulado na classe:
+
+```html
+<div class="watch-anywhere__text-container">
+```
+
+E recebeu os seguintes estilos:
+
+* `padding: 0 2vw`;
+* `margin: 24px 0` em títulos e parágrafos internos.
+
+---
+
+### **Dificuldades enfrentadas**
+
+Durante a construção da aula, algumas dificuldades surgiram:
+
+1. **Erros de digitação nas classes**: por conta da atenção reduzida, vários nomes de classes foram escritos incorretamente no HTML ou SASS, causando falhas de renderização;
+2. **Esquecimento de salvar ou ativar automação**: em certo momento, as alterações feitas no SASS não estavam sendo refletidas no CSS final. Isso ocorreu porque o comando de observação do Gulp (`npm run dev`) não havia sido ativado, impedindo a compilação automática;
+3. **Problemas ao salvar o arquivo**: houve um momento em que o CSS foi fechado antes de concluir uma edição, o que interrompeu a aplicação de estilos.
+
+Esses erros, somados à baixa concentração, fizeram com que uma aula curta de aproximadamente 7 minutos levasse cerca de 1 hora para ser finalizada. Apesar das dificuldades, a aula foi concluída com sucesso, e os erros serviram como reforço da importância da atenção aos detalhes e da prática constante.
+
+---
+
+### **Resumo da Aula 6**
+
+* Criamos a seção "Assista do seu jeito" com imagem e texto promocional;
+* Utilizamos `grid` para organizar os elementos lado a lado;
+* Estilizamos com SASS, mantendo padrões de espaçamento e responsividade;
+* Aplicamos a metodologia BEM na nomeação das classes;
+* Corrigimos erros comuns de digitação e configuração do Gulp;
+* Concluímos a seção, reforçando o aprendizado prático mesmo diante das dificuldades.
