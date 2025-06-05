@@ -7,7 +7,7 @@
 [Aula 04 - Crie a sessão de atrações ](#aula-4--crie-a-sessão-de-atrações)  
 [Aula 05 - Criar listagem de planos](#aula-5--criar-listagem-de-planos)  
 [Aula 06 - Crie a seção "Assista do seu jeito" ](#aula-6--crie-a-seção-assista-do-seu-jeito)  
-[Aula 07 - ]()  
+[Aula 07 - Crie a sessão dispositivos disponíveis ](#aula-7--crie-a-sessão-dispositivos-disponíveis)  
 [Aula 08 - ]()  
 [Aula 09 - ]()  
 [Aula 10 - ]()  
@@ -716,3 +716,104 @@ Esses erros, somados à baixa concentração, fizeram com que uma aula curta de 
 * Aplicamos a metodologia BEM na nomeação das classes;
 * Corrigimos erros comuns de digitação e configuração do Gulp;
 * Concluímos a seção, reforçando o aprendizado prático mesmo diante das dificuldades.
+
+Claro! Aqui está o **texto unificado da Aula 7 – Crie a sessão Dispositivos Disponíveis**, com as correções feitas com base no código que você compartilhou:
+
+---
+
+## Aula 7 – Crie a sessão Dispositivos Disponíveis
+
+### Objetivos
+
+* Reestruturar uma sessão de conteúdo com imagem e lista.
+* Aplicar estilos CSS/Sass para formatar a seção.
+* Resolver problemas de alinhamento e vazamento de conteúdo.
+
+---
+
+### Introdução
+
+Nesta aula, o objetivo foi criar e estilizar a seção "Disponível nos seus dispositivos favoritos", explorando diferentes estratégias de layout e posicionamento. Também aprendemos a refatorar o CSS para torná-lo mais genérico e reutilizável no projeto.
+
+---
+
+### Estrutura HTML
+
+Criamos uma nova `<section>` com a classe `.availabes-devices`, contendo:
+
+* Um título `<h2 class="title">Disponível nos seus dispositivos favoritos</h2>`;
+* Uma lista `<ul class="availabes-devices__list">` com quatro `<li>`s, representando:
+
+  * Computador
+  * TV
+  * Videogame
+  * Celular
+
+Cada `<li>` contém:
+
+* Uma imagem ilustrativa do dispositivo;
+* Um título com classe `.title--small`;
+* Uma lista `<ul class="text">` com os sistemas/plataformas suportados.
+
+---
+
+### Estilização com Sass
+
+O estilo da seção foi escrito dentro de um bloco `.availabes-devices`, usando a estrutura aninhada do Sass:
+
+```scss
+.availabes-devices {
+  padding: 5.6vw;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+
+    &__item {
+      text-align: center;
+
+      img {
+        max-width: 100%;
+      }
+
+      h4 {
+        margin-top: 20px;
+        margin-bottom: 24px;
+      }
+
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+}
+```
+
+**Destaques da estilização:**
+
+* Uso de `grid-template-columns: repeat(4, 1fr)` com `gap: 24px` para organizar os dispositivos em 4 colunas com espaçamento;
+* Centralização de texto e imagens;
+* Remoção dos marcadores de lista (`list-style-type: none`);
+* Margens para o título `<h4>` ajustadas para melhor espaçamento vertical.
+
+---
+
+### Dificuldades e Aprendizados
+
+Durante a aula, surgiram alguns erros comuns, como esquecer o `s` em `devices`, aplicar a classe `.text` diretamente nos `<li>` ao invés da `<ul>`, ou esquecer de iniciar o processo de automação do Sass com o Gulp, o que causou confusão ao não ver as alterações sendo aplicadas no CSS.
+
+Além disso, o professor reforçou a importância de utilizar nomes de classes genéricos como `.image-text-section`, permitindo o reaproveitamento em outras seções, ao invés de nomes específicos como `.watch-anywhere`. Também aprendemos a aplicar modificadores com a metodologia BEM, como em `.image-text-section--image-full-width`.
+
+Por fim, o professor explicou a diferença entre usar `grid-template-columns: repeat(4, 1fr)` e porcentagens fixas como `25%`. Ao utilizar `1fr`, o `gap` entre as colunas é automaticamente levado em consideração, evitando vazamentos de conteúdo.
+
+---
+
+### Conclusão
+
+Apesar da aula ter um vídeo curto, o tempo de execução foi maior por conta dos ajustes finos de CSS, práticas com Sass, metodologia BEM e entendimento do grid layout. No fim, conseguimos montar uma seção visualmente bonita, responsiva e funcional para mostrar os dispositivos compatíveis com o serviço da Disney+.
