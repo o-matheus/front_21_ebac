@@ -8,7 +8,7 @@
 [Aula 05 - Criar listagem de planos](#aula-5--criar-listagem-de-planos)  
 [Aula 06 - Crie a seção "Assista do seu jeito" ](#aula-6--crie-a-seção-assista-do-seu-jeito)  
 [Aula 07 - Crie a sessão dispositivos disponíveis ](#aula-7--crie-a-sessão-dispositivos-disponíveis)  
-[Aula 08 - ]()  
+[Aula 08 - Crie o FAQ ](#aula-8--crie-o-faq)  
 [Aula 09 - ]()  
 [Aula 10 - ]()  
 [Aula 11 - ]()  
@@ -817,3 +817,134 @@ Por fim, o professor explicou a diferença entre usar `grid-template-columns: re
 ### Conclusão
 
 Apesar da aula ter um vídeo curto, o tempo de execução foi maior por conta dos ajustes finos de CSS, práticas com Sass, metodologia BEM e entendimento do grid layout. No fim, conseguimos montar uma seção visualmente bonita, responsiva e funcional para mostrar os dispositivos compatíveis com o serviço da Disney+.
+
+Claro! A seguir está uma versão mais **detalhada e narrativa** do texto unificado da **Aula 8 – Crie o FAQ**, com foco no **processo prático, dificuldades enfrentadas**, e os **ajustes feitos ao longo do caminho**, como você tem preferido nas aulas anteriores:
+
+---
+
+## Aula 8 – Crie o FAQ
+
+### Objetivos da Aula
+
+Nesta aula, nosso principal objetivo foi desenvolver uma seção de **Perguntas Frequentes (FAQ)** para o site, semelhante à que aparece no Disney+. A proposta envolvia três frentes principais:
+
+1. Compreender a **estrutura HTML** necessária para um componente do tipo *accordion*;
+2. Estilizar esse conteúdo com **Sass/CSS**, usando boas práticas e transições suaves;
+3. Implementar com **JavaScript** a lógica de abrir e fechar as respostas dinamicamente.
+
+Além disso, exploramos conceitos como **componentes reutilizáveis**, **nomenclatura BEM**, e ajustes visuais inspirados diretamente no site original.
+
+---
+
+### Estruturação HTML
+
+Iniciamos criando uma `section` com a classe `faq`. Dentro dela, colocamos um `h2` com a classe `title` e o conteúdo "Perguntas Frequentes". Abaixo desse título, montamos uma lista `ul` com a classe `faq__questions`, e dentro dela adicionamos múltiplos `li` com a classe `faq__questions__item`.
+
+Cada item (`faq__questions__item`) é dividido em duas partes:
+
+* `faq__questions__item__question`: é o título da pergunta clicável;
+* `faq__questions__item__answer`: é o parágrafo que contém a resposta, inicialmente escondido.
+
+Essa estrutura nos permitiu controlar cada par de pergunta e resposta de forma separada, facilitando tanto a estilização quanto a interação via JS.
+
+---
+
+### Estilização com Sass/CSS
+
+#### Estilo básico e organização
+
+Usamos a metodologia **BEM** para manter os nomes das classes consistentes e compreensíveis. A `section.faq` recebeu um espaçamento padrão de `padding: 5.6vw`, mantendo a harmonia com outras seções da página. O título `.title` foi centralizado com `text-align: center`.
+
+Cada item da lista (`faq__questions__item`) foi posicionado com `margin`, `padding` e cores adequadas. A cor de fundo foi definida como `#13151D`, e depois convertida em uma variável para reutilização futura.
+
+#### Esconder e revelar a resposta
+
+No CSS, configuramos a resposta (`faq__questions__item__answer`) para ter `height: 0` e `overflow: hidden`, garantindo que ficasse oculta por padrão. Quando quisermos mostrar essa resposta, utilizamos um **modificador**: `faq__questions__item--is-open`, que altera a `height` para `auto`.
+
+Para melhorar a experiência visual, adicionamos uma **transição CSS**:
+
+```css
+transition: height 0.5s ease;
+```
+
+Ela foi aplicada tanto no estado base quanto no modificador, permitindo uma animação suave na abertura e no fechamento.
+
+#### Sinais de + e –
+
+Para simular o comportamento de abrir e fechar, como no site da Disney, utilizamos o seletor `::after` na `__question`. Com isso, adicionamos dinamicamente os sinais:
+
+* `+` quando o conteúdo está recolhido;
+* `–` quando o conteúdo está visível.
+
+Essa alternância foi feita combinando o estado da classe com as regras de CSS, usando propriedades como `content`, `position: absolute`, `top`, `right`, `font-size`, `display: flex` e `align-items: center`. Também aplicamos `position: relative` no contêiner pai para posicionar corretamente o ícone.
+
+---
+
+### Implementação com JavaScript
+
+#### Seleção de elementos
+
+Para iniciar a lógica do *accordion*, criamos uma constante:
+
+```js
+const questions = document.querySelectorAll('[data-faq-question]');
+```
+
+Esse seletor pegou todos os elementos com o atributo `data-faq-question`, que adicionamos manualmente em cada `div` de pergunta no HTML. Essa foi uma etapa importante, pois inicialmente esquecemos de adicionar o `data-faq-question`, o que gerou dúvidas até percebermos o erro.
+
+#### Manipulação de eventos
+
+A seguir, criamos um `for` tradicional para percorrer os elementos e adicionamos um **event listener**:
+
+```js
+for (let i = 0; i < questions.length; i++) {
+  questions[i].addEventListener('click', abreOuFechaResposta);
+}
+```
+
+Criamos então a função `abreOuFechaResposta`, que:
+
+1. Captura o `target` do clique;
+2. Acessa o `parentNode` (elemento pai da pergunta), pois é ele que precisa da classe `--is-open`;
+3. Usa o método `classList.toggle()` para alternar essa classe.
+
+Isso ativa a transição, muda o sinal de + para –, e revela ou oculta a resposta.
+
+#### Lidando com erros
+
+Durante esse processo, enfrentamos algumas dificuldades:
+
+* Inicialmente, usamos o nome errado para classes e seletores, como esquecer o `__` da nomenclatura BEM;
+* A transição CSS não funcionava porque colocamos uma vírgula indevida entre os valores de `transition` — corrigimos para:
+
+  ```css
+  transition: height 0.5s ease;
+  ```
+* Tivemos dúvidas sobre como a função `toggle` atuava, até entendermos que ela adiciona ou remove dinamicamente a classe indicada.
+
+Esses pequenos tropeços fizeram parte do aprendizado e nos mostraram a importância de prestar atenção aos detalhes, principalmente quando se trabalha com múltiplas camadas (HTML, CSS e JS).
+
+---
+
+### Inserção de conteúdo real
+
+Ao final da aula, começamos a preencher o conteúdo real do FAQ com perguntas e respostas reais do Disney+, como:
+
+* O que está incluído no Disney+?
+* Como faço para assistir offline?
+
+Para cada pergunta, criamos um novo `li` e seguimos o mesmo padrão de estrutura HTML. As respostas foram inseridas em parágrafos `p`, com a classe `.text--big` aplicada para harmonizar visualmente.
+
+---
+
+### Conclusão
+
+A construção do componente FAQ nos ajudou a exercitar várias habilidades de frontend ao mesmo tempo:
+
+* Estruturação semântica e reutilizável com HTML e BEM;
+* Estilização consistente e animada com Sass;
+* Lógica de interação com JavaScript puro, manipulando classes e eventos.
+
+Apesar dos desafios — como erros de digitação, problemas de nomenclatura e dificuldades com transições — conseguimos entregar um componente funcional, esteticamente agradável e de comportamento fluido.
+
+Esse tipo de seção é bastante comum em sites e portais, e agora dominamos sua criação tanto do ponto de vista visual quanto funcional.
