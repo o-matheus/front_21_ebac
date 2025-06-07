@@ -9,7 +9,7 @@
 [Aula 06 - Crie a seção "Assista do seu jeito" ](#aula-6--crie-a-seção-assista-do-seu-jeito)  
 [Aula 07 - Crie a sessão dispositivos disponíveis ](#aula-7--crie-a-sessão-dispositivos-disponíveis)  
 [Aula 08 - Crie o FAQ ](#aula-8--crie-o-faq)  
-[Aula 09 - ]()  
+[Aula 09 - Crie o Rodapé ](#aula-9--crie-o-rodapé)  
 [Aula 10 - ]()  
 [Aula 11 - ]()  
 
@@ -948,3 +948,153 @@ A construção do componente FAQ nos ajudou a exercitar várias habilidades de f
 Apesar dos desafios — como erros de digitação, problemas de nomenclatura e dificuldades com transições — conseguimos entregar um componente funcional, esteticamente agradável e de comportamento fluido.
 
 Esse tipo de seção é bastante comum em sites e portais, e agora dominamos sua criação tanto do ponto de vista visual quanto funcional.
+
+Ótimo! Com base nesse código SCSS fornecido, fiz uma atualização no **texto unificado da Aula 9** para alinhar completamente com a implementação real do `footer.scss`. Abaixo está a versão **revisada e completa**, já incorporando o uso correto das variáveis, seletores e estrutura BEM conforme o seu código:
+
+---
+
+## Aula 9 – Crie o rodapé
+
+### Objetivos
+
+* Compreender a estrutura e os elementos de um rodapé web;
+* Aprender a estilizar elementos de um rodapé com CSS/SASS;
+* Praticar o uso de variáveis CSS para gerenciar estilos com consistência.
+
+---
+
+### Introdução
+
+Nesta aula, criamos o rodapé (footer) do projeto, inspirado na estrutura do site da Disney+. O foco foi consolidar a prática com componentes reutilizáveis, estrutura semântica e estilização utilizando SASS com organização BEM e variáveis SCSS para manter padronização visual.
+
+---
+
+### Estrutura HTML
+
+O rodapé foi construído com a seguinte estrutura semântica:
+
+```html
+<footer class="footer">
+  <div class="footer__container">
+    <img class="footer__logo" src="..." alt="Logo Disney+" />
+
+    <ul class="footer__links">
+      <li class="footer__links__item"><a href="#">Termos e Condições de Uso</a></li>
+      <li class="footer__links__item"><a href="#">Política de Privacidade</a></li>
+      <li class="footer__links__item"><a href="#">Proteção de Dados no Brasil</a></li>
+      <li class="footer__links__item"><a href="#">Anúncios Personalizados</a></li>
+      <li class="footer__links__item"><a href="#">Dispositivos Compatíveis</a></li>
+      <li class="footer__links__item"><a href="#">Ajuda</a></li>
+      <li class="footer__links__item"><a href="#">Sobre o Disney+</a></li>
+
+      <li class="footer__links__item language-selector">
+        <img src="globo.png" alt="Ícone de globo" />
+        <select>
+          <option selected>Português</option>
+          <option>English</option>
+        </select>
+      </li>
+    </ul>
+
+    <p>© Disney. Todos os direitos reservados.</p>
+    <p>Serviço de assinatura pago. Conteúdo sujeito à disponibilidade.</p>
+  </div>
+</footer>
+```
+
+---
+
+### Estilização com SCSS
+
+A estilização foi dividida entre os blocos de BEM para o footer e um seletor especial `.language-selector`.
+
+#### Estrutura geral
+
+```scss
+.footer {
+  padding: 26px 8px;
+
+  &__container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  &__logo {
+    width: 80px;
+    margin: 0 auto 10px;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    &__item {
+      display: inline-block;
+
+      a {
+        text-decoration: none;
+        padding: 8px 16px;
+        display: block;
+
+        &:hover {
+          color: variaveis.$corTextoSecundario;
+        }
+      }
+    }
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+}
+```
+
+#### Seletor de idioma (`.language-selector`)
+
+Esse seletor, responsável por exibir o ícone de idioma e o dropdown `<select>`, foi construído de forma separada para garantir sua responsividade e alinhamento:
+
+```scss
+.language-selector {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+
+  select {
+    background-color: transparent;
+    border: none;
+    color: variaveis.$corTextoPrincipal;
+    height: 38px;
+
+    &:hover {
+      color: variaveis.$corTextoSecundario;
+    }
+
+    option {
+      color: variaveis.$corDeFundo;
+    }
+  }
+}
+```
+
+---
+
+### Considerações finais
+
+Durante o processo, alguns ajustes importantes foram feitos para alinhar os elementos visualmente:
+
+* O `<select>` inicialmente ficou desproporcional, e foi necessário definir uma altura fixa de `38px`;
+* Para garantir o alinhamento vertical entre os links e o seletor, aplicamos `display: flex`, `align-items: center` e `flex-wrap: wrap` na lista principal;
+* Foi reforçado o uso da metodologia BEM para nomear classes e manter organização;
+* As cores e estilos em `hover` foram definidos utilizando variáveis SCSS já criadas, mantendo consistência com o restante do projeto.
+
+Essa aula fechou a construção visual do site, preparando para o exercício prático final.
