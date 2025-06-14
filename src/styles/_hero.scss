@@ -7,6 +7,11 @@
     text-align: center;
     background-size: cover;
 
+    .button {
+        margin-top: 2vw;
+        margin-bottom: 8px;
+    }
+
     &__content {
         max-width: 640px;
 
@@ -30,7 +35,7 @@
         &__combos {
             display: flex;
             justify-content: space-between;
-            
+
             &__combo {
                 width: calc(50% - 12px);
 

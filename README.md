@@ -10,7 +10,7 @@
 [Aula 07 - Crie a sessão dispositivos disponíveis ](#aula-7--crie-a-sessão-dispositivos-disponíveis)  
 [Aula 08 - Crie o FAQ ](#aula-8--crie-o-faq)  
 [Aula 09 - Crie o Rodapé ](#aula-9--crie-o-rodapé)  
-[Aula 10 - ]()  
+[Aula 10 - Crie o Cabeçalho ](#aula-10--crie-o-cabeçalho)  
 [Aula 11 - ]()  
 
 Claro! Com base nas suas anotações e no código final do `gulpfile.js`, aqui está o **texto unificado da Aula 1** no formato estruturado que combinamos:
@@ -1097,4 +1097,145 @@ Durante o processo, alguns ajustes importantes foram feitos para alinhar os elem
 * Foi reforçado o uso da metodologia BEM para nomear classes e manter organização;
 * As cores e estilos em `hover` foram definidos utilizando variáveis SCSS já criadas, mantendo consistência com o restante do projeto.
 
-Essa aula fechou a construção visual do site, preparando para o exercício prático final.
+Aqui está o **Texto Final Unificado da Aula 10 – Crie o Cabeçalho**, seguindo o padrão das aulas anteriores:
+
+---
+
+# Aula 10 – Crie o Cabeçalho
+
+## Objetivos da Aula
+
+* Compreender a estrutura HTML e CSS do cabeçalho.
+* Aplicar técnicas de responsividade.
+* Implementar comportamentos interativos com JavaScript.
+
+---
+
+## Introdução
+
+Nesta aula, o objetivo principal foi construir o cabeçalho (header) do nosso site, seguindo o layout de referência do Disney+ em sua versão de 2022. Além da estrutura HTML e das estilizações com CSS/SASS, também aprendemos a adicionar interatividade por meio de JavaScript, com foco em exibir e ocultar elementos com base na rolagem da página.
+
+---
+
+## Estrutura HTML do Cabeçalho
+
+A estrutura básica do header começou com a criação da tag `<header>`, com a classe `.header`. Dentro dela, criamos um container `.header__container` que abriga os principais elementos:
+
+* **Logo Disney+**: Agora posicionado dentro de um `<h1>`, com a classe `.header__logo`, para refletir a importância semântica na hierarquia HTML e melhorar o SEO.
+* **Lista de Links (`<ul class="header__links">`)**: Contendo dois botões:
+
+  * Um botão com a classe `.button .button--secondary` para o "Assine Agora".
+  * Outro com a classe `.button .button--dark` para o "Entrar".
+
+A lista de links utilizou a classe `.header__links__item` para estilização de cada item.
+
+---
+
+## Estilização com CSS/SASS
+
+Criamos o arquivo `header.scss` e o importamos no `main.scss`.
+
+### Principais Estilizações:
+
+* **Container**: Usamos `display: flex` com `justify-content: space-between` para posicionar a logo à esquerda e os botões à direita.
+* **Botões**: Criamos dois modificadores:
+
+  * `.button--secondary`: Fundo azul.
+  * `.button--dark`: Fundo preto com opacidade de 80%.
+
+Além disso:
+
+* Todos os botões receberam `border: 1px solid` para garantir tamanho uniforme entre eles.
+* Adicionamos um `letter-spacing: 1px` para dar o espaçamento entre as letras, como no site da Disney.
+* Removemos margens e paddings padrões usando o reset CSS.
+
+### Hover nos Botões:
+
+* Nos botões `.button--primary` e `.button--secondary`, usamos a função SASS `lighten()` para clarear a cor em 3% no hover.
+* No botão `.button--dark`, ao passar o mouse, a cor de fundo se torna branca, e o texto assume a cor do fundo escuro original, criando contraste.
+
+---
+
+## Implementação da Responsividade e Efeito Sticky
+
+Para fazer o menu fixo durante o scroll:
+
+* Adicionamos `position: sticky; top: 0; left: 0; z-index: 1;` à classe `.header`.
+
+Assim, o cabeçalho permanece visível no topo da tela enquanto o usuário navega.
+
+---
+
+## Comportamento Interativo com JavaScript
+
+O professor nos guiou na criação de um comportamento onde, ao rolar a página, o logo da Disney e o botão "Assine Agora" desaparecem quando estamos na Hero Section.
+
+### Lógica Implementada:
+
+1. Criamos uma constante `heroSection` para capturar a altura da Hero usando `clientHeight`.
+2. Monitoramos o scroll da janela usando:
+
+```javascript
+window.addEventListener('scroll', function() {
+    const posicaoAtual = window.scrollY;
+});
+```
+
+3. Criamos duas funções para controle de visibilidade:
+
+```javascript
+function ocultaElementos() {
+    header.classList.add('header__is-hidden');
+}
+
+function exibeElementos() {
+    header.classList.remove('header__is-hidden');
+}
+```
+
+4. No evento de scroll, usamos uma condicional eficiente:
+
+```javascript
+if (posicaoAtual < alturaHero) {
+    ocultaElementos();
+} else {
+    exibeElementos();
+}
+```
+
+> Essa abordagem (condição apenas para ocultar dentro da Hero) reduziu o número de execuções da função e melhorou a performance.
+
+---
+
+## Ajustes Finais de CSS para a Classe `.header__is-hidden`
+
+Quando o header recebia a classe `.header__is-hidden`, aplicamos as seguintes alterações:
+
+* No logo e no botão "Assine Agora":
+
+  * `opacity: 0`
+  * `visibility: hidden`
+  * Efeito de transição suave com `transition: opacity 0.5s ease;`
+
+Além disso, usamos o seletor `:first-child` para garantir que somente o primeiro botão (o secundário) fosse afetado.
+
+---
+
+## Solução de Problemas Durante a Aula
+
+Durante a implementação, enfrentamos alguns problemas comuns:
+
+* Esqueci de colocar o ponto nas classes no SASS, o que fez com que o CSS não aplicasse corretamente.
+* Tive erro de digitação em `window.scrollY` (escrevi como `windown`).
+* Também deixei de colocar unidades como o `s` em `0.5s` na transição.
+* Precisei lembrar de adicionar o `z-index: 1` ao header para evitar sobreposição com o conteúdo da Hero.
+
+Esses ajustes foram essenciais para que o efeito final de esconder/mostrar o cabeçalho funcionasse como esperado.
+
+---
+
+## Conclusão
+
+Com isso, finalizamos a construção completa do cabeçalho do site, com estruturação semântica, estilização consistente com o layout de referência, e comportamentos interativos controlados via JavaScript.
+
+Agora o menu responde ao scroll, os elementos aparecem e desaparecem de forma suave, e a experiência de navegação fica mais próxima do padrão profissional usado no site da Disney+.
