@@ -10,7 +10,13 @@
         display: grid;
         gap: 24px;
         grid-template-columns: repeat(4, 1fr);
-        &__item{
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr 1fr;
+
+        }
+
+        &__item {
             text-align: center;
 
             li {
@@ -26,7 +32,7 @@
                 max-width: 100%;
             }
 
-            
+
         }
     }
 }
