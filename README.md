@@ -1239,3 +1239,172 @@ Esses ajustes foram essenciais para que o efeito final de esconder/mostrar o cab
 Com isso, finalizamos a construção completa do cabeçalho do site, com estruturação semântica, estilização consistente com o layout de referência, e comportamentos interativos controlados via JavaScript.
 
 Agora o menu responde ao scroll, os elementos aparecem e desaparecem de forma suave, e a experiência de navegação fica mais próxima do padrão profissional usado no site da Disney+.
+
+Aqui está o **texto unificado da Aula 11 – Realize o Deploy**, seguindo o estilo das aulas anteriores:
+
+---
+
+# Aula 11 – Realize o Deploy
+
+## Objetivos da Aula
+
+* Compreender a importância da responsividade no design web.
+* Aprender a aplicar estilos responsivos usando CSS e media queries.
+* Praticar o processo de deploy de um projeto web utilizando a Vercel.
+
+---
+
+## Introdução
+
+Nesta aula, o foco principal foi finalizar o projeto do clone da Disney+, ajustando a responsividade do site para dispositivos móveis e tablets, otimizando o JavaScript através de minificação, e por fim realizando o deploy do projeto utilizando a Vercel.
+
+---
+
+## Ajustes de Responsividade
+
+O primeiro passo foi realizar uma revisão completa do layout em diferentes dispositivos usando a aba de desenvolvedor do navegador. Inicialmente enfrentei dificuldades ao testar o site na visão mobile, pois a aba de desenvolvedor não estava exibindo a visualização corretamente. Após resolver o problema com o navegador, comecei os ajustes.
+
+### Principais ajustes feitos:
+
+* **Seção de Planos (Plans):**
+
+  * No desktop, os planos estavam lado a lado (grid de 3 colunas).
+  * No mobile, aplicamos um `display: block` para empilhar os itens verticalmente.
+  * No tablet, ajustamos o alinhamento central usando `margin: 0 auto`.
+
+* **Hero – Ajuste da imagem de fundo:**
+
+  * Aumentei manualmente o `padding-top`, mas depois o professor apresentou uma solução mais precisa:
+
+  ```css
+  padding-top: calc(50vw + 75px);
+  ```
+
+  * Isso garantiu que o espaçamento do conteúdo ficasse proporcional ao tamanho da tela.
+
+* **Seção de Filmes e Séries (Responsividade da Imagem):**
+
+  * Implementamos a tag `<picture>` com `<source>` e media queries para carregar imagens diferentes conforme o tamanho da tela.
+  * Estrutura utilizada:
+
+  ```html
+  <picture>
+    <source media="(max-width: 768px)" srcset="src/images/mobile/filmes_series_mobile.png">
+    <img src="src/images/fundo_rei_leao.png" alt="Imagem Filme Rei Leão">
+  </picture>
+  ```
+
+* **Font Sizes responsivos:**
+
+  * Criamos media queries para ajustar o tamanho das fontes:
+
+    * `.title--big`: 15px
+    * `.title`: 14px
+    * `.title--small`: 12px
+    * Textos normais: 11px ou 14px, dependendo do contexto.
+
+* **Seção de Shows (Tabs):**
+
+  * Para evitar que as abas quebrassem linha no mobile, adicionamos:
+
+  ```scss
+  white-space: nowrap;
+  overflow-x: auto;
+  ```
+
+* **Seção de Combos:**
+
+  * No mobile, cada combo passou a ter `display: block`, empilhando verticalmente os planos.
+
+* **Header e Botões:**
+
+  * Para os botões no mobile, ajustamos:
+
+  ```scss
+  font-size: 13px;
+  padding: 8px 15px;
+  height: 40px;
+  letter-spacing: 1px;
+  ```
+
+* **Geral:**
+
+  * Ajustamos margens, espaçamentos e aplicamos `media queries` adicionais nas seções de título e containers.
+
+---
+
+## Minificação de JavaScript com UglifyJS
+
+O professor mostrou como minificar o JavaScript para reduzir o tamanho do arquivo e melhorar o desempenho.
+
+### Passos seguidos:
+
+1. Instalamos o **UglifyJS** como dependência de desenvolvimento:
+
+```bash
+npm i --save-dev uglify-js
+```
+
+2. Criamos uma task específica no Grunt para minificar o arquivo `main.js`:
+
+```js
+uglify: {
+  dist: {
+    files: {
+      'dist/js/main.min.js': ['src/main.js']
+    }
+  }
+}
+```
+
+3. Corrigimos um erro de sintaxe (havia escrito `scripts` em vez de `script` no caminho do Grunt).
+
+4. Atualizamos o HTML para apontar para o novo arquivo minificado:
+
+```html
+<script src="dist/js/main.min.js"></script>
+```
+
+---
+
+## Configuração de Deploy na Vercel
+
+Por fim, o professor nos orientou sobre como fazer o deploy do projeto utilizando a **Vercel**, com atenção especial por ser um projeto que utiliza o Grunt como pré-processador.
+
+### Configuração feita na Vercel:
+
+* **Build Command:**
+
+```
+npm run build
+```
+
+* **Output Directory:**
+
+```
+dist/
+```
+
+* Criamos o script de build no `package.json`:
+
+```json
+"scripts": {
+  "build": "grunt"
+}
+```
+
+### Problemas enfrentados:
+
+* No primeiro deploy, houve erro por conta de um comando digitado errado. Corrigi rapidamente e o segundo deploy funcionou perfeitamente.
+
+* O site foi publicado com sucesso. A versão final já está online e responsiva.
+
+---
+
+## Considerações Finais
+
+A experiência foi bem completa: além de trabalhar com HTML, CSS (SASS), JavaScript e Grunt, também passamos por tópicos de **responsividade**, **minificação de código** e **deploy em ambiente real**.
+
+Apesar de alguns pequenos detalhes de alinhamento ou espaçamento ainda poderem ser refinados, o resultado geral foi muito positivo. O site está disponível tanto para desktop quanto para dispositivos móveis.
+
+> Próximo passo: começar o exercício final do módulo.
