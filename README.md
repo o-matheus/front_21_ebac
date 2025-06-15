@@ -13,9 +13,6 @@
 [Aula 10 - Crie o Cabeçalho ](#aula-10--crie-o-cabeçalho)  
 [Aula 11 - Realize o Deploy ](#aula-11--realize-o-deploy)  
 
-Claro! Com base nas suas anotações e no código final do `gulpfile.js`, aqui está o **texto unificado da Aula 1** no formato estruturado que combinamos:
-
----
 
 ## **Aula 1 – Inicie o projeto**
 
@@ -336,10 +333,6 @@ background-size: cover;
 * Criamos o script `npm run dev` no `package.json` para agilizar o desenvolvimento;
 * Resolvemos pequenos bugs e alinhamos a estrutura visual ao site original.
 
-Perfeito! Aqui está a **anotação revisada da Aula 3**, com foco em ortografia e fluidez, conforme você orientou:
-
----
-
 ## **Aula 3 – Importe uma fonte externa**
 
 ### **Objetivos da aula**
@@ -409,10 +402,6 @@ Ao final da aula, o professor reforça o uso do **Git** para controle de versão
 4. `git push` – enviar ao repositório remoto.
 
 Ele também explicou que o Git mostra, no terminal, **comparações entre o repositório local e o remoto**, informando se os arquivos estão atualizados, pendentes ou em conflito.
-
-Claro! Aqui está o texto unificado da **Aula 4 – Crie a sessão de atrações**, seguindo o modelo estruturado da **Aula 1 - Configuração Grunt**:
-
----
 
 ## Aula 4 – Crie a sessão de atrações
 
@@ -523,10 +512,6 @@ document.querySelector([data-tab-id=${abaAlvo}]);
 
 Apesar disso, é recomendado utilizar aspas para manter a clareza e evitar possíveis problemas de interpretação por parte do navegador.
 
-Perfeito! Aqui está o **texto unificado da Aula 5 – Criar Listagem de Planos**, seguindo exatamente o padrão que você indicou anteriormente:
-
----
-
 ## **Aula 5 – Criar Listagem de Planos**
 
 ### **Objetivos da aula**
@@ -630,10 +615,6 @@ Com isso, o segundo plano ganhou o selo de "Mais popular", com um fundo roxo que
 * Corrigimos espaçamentos verticais entre as seções e os elementos internos;
 * Finalizamos com uma seção visualmente próxima da versão real do site da Disney+.
 
-Perfeito! Aqui está o **texto unificado da Aula 6 – Crie a seção "Assista do seu jeito"**, seguindo o mesmo padrão das aulas anteriores:
-
----
-
 ## **Aula 6 – Crie a seção "Assista do seu jeito"**
 
 ### **Objetivos da aula**
@@ -716,10 +697,6 @@ Esses erros, somados à baixa concentração, fizeram com que uma aula curta de 
 * Aplicamos a metodologia BEM na nomeação das classes;
 * Corrigimos erros comuns de digitação e configuração do Gulp;
 * Concluímos a seção, reforçando o aprendizado prático mesmo diante das dificuldades.
-
-Claro! Aqui está o **texto unificado da Aula 7 – Crie a sessão Dispositivos Disponíveis**, com as correções feitas com base no código que você compartilhou:
-
----
 
 ## Aula 7 – Crie a sessão Dispositivos Disponíveis
 
@@ -817,10 +794,6 @@ Por fim, o professor explicou a diferença entre usar `grid-template-columns: re
 ### Conclusão
 
 Apesar da aula ter um vídeo curto, o tempo de execução foi maior por conta dos ajustes finos de CSS, práticas com Sass, metodologia BEM e entendimento do grid layout. No fim, conseguimos montar uma seção visualmente bonita, responsiva e funcional para mostrar os dispositivos compatíveis com o serviço da Disney+.
-
-Claro! A seguir está uma versão mais **detalhada e narrativa** do texto unificado da **Aula 8 – Crie o FAQ**, com foco no **processo prático, dificuldades enfrentadas**, e os **ajustes feitos ao longo do caminho**, como você tem preferido nas aulas anteriores:
-
----
 
 ## Aula 8 – Crie o FAQ
 
@@ -948,10 +921,6 @@ A construção do componente FAQ nos ajudou a exercitar várias habilidades de f
 Apesar dos desafios — como erros de digitação, problemas de nomenclatura e dificuldades com transições — conseguimos entregar um componente funcional, esteticamente agradável e de comportamento fluido.
 
 Esse tipo de seção é bastante comum em sites e portais, e agora dominamos sua criação tanto do ponto de vista visual quanto funcional.
-
-Ótimo! Com base nesse código SCSS fornecido, fiz uma atualização no **texto unificado da Aula 9** para alinhar completamente com a implementação real do `footer.scss`. Abaixo está a versão **revisada e completa**, já incorporando o uso correto das variáveis, seletores e estrutura BEM conforme o seu código:
-
----
 
 ## Aula 9 – Crie o rodapé
 
@@ -1097,10 +1066,6 @@ Durante o processo, alguns ajustes importantes foram feitos para alinhar os elem
 * Foi reforçado o uso da metodologia BEM para nomear classes e manter organização;
 * As cores e estilos em `hover` foram definidos utilizando variáveis SCSS já criadas, mantendo consistência com o restante do projeto.
 
-Aqui está o **Texto Final Unificado da Aula 10 – Crie o Cabeçalho**, seguindo o padrão das aulas anteriores:
-
----
-
 # Aula 10 – Crie o Cabeçalho
 
 ## Objetivos da Aula
@@ -1239,10 +1204,6 @@ Esses ajustes foram essenciais para que o efeito final de esconder/mostrar o cab
 Com isso, finalizamos a construção completa do cabeçalho do site, com estruturação semântica, estilização consistente com o layout de referência, e comportamentos interativos controlados via JavaScript.
 
 Agora o menu responde ao scroll, os elementos aparecem e desaparecem de forma suave, e a experiência de navegação fica mais próxima do padrão profissional usado no site da Disney+.
-
-Aqui está o **texto unificado da Aula 11 – Realize o Deploy**, seguindo o estilo das aulas anteriores:
-
----
 
 # Aula 11 – Realize o Deploy
 
